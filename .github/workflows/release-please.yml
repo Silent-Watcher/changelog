@@ -1,17 +1,19 @@
+name: Release Workflow
+
 on:
   push:
     branches:
-      - master
-
-permissions: write-all
-
-name: release-please
+      - 'main'
 
 jobs:
-  release-please:
+  release-job:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: google-github-actions/release-please-action@v3
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Release with release-please
+        uses: google-github-actions/release-please-action@v2
         with:
-          release-type: node
-          package-name: tags
+          token: ${{ secrets.GITHUB_TOKEN }}
