@@ -1,23 +1,26 @@
-name: Release Workflow
-
 on:
   push:
     branches:
-      - master
-
-permissions: write-all
-
+      - main
+name: release-please
 jobs:
-  release-job:
+  release-please:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Release with release-please
-        uses: google-github-actions/release-please-action@v3
+      - uses: google-github-actions/release-please-action@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: node
-          package-name: tags
+          release-type: simple
+          changelog-types: >
+            [
+              { "type": "build", "section": "Build System", "hidden": false },
+              { "type": "ci", "section": "Continuous Integration", "hidden": false },
+              { "type": "chore", "section": "Miscellaneous Chores", "hidden": false },
+              { "type": "docs", "section": "Documentation", "hidden": false },
+              { "type": "feat", "section": "Features", "hidden": false },
+              { "type": "fix", "section": "Bug Fixes", "hidden": false },
+              { "type": "perf", "section": "Performance Improvements", "hidden": false },
+              { "type": "revert", "section": "Reverts", "hidden": false },
+              { "type": "refactor", "section": "Code Refactoring", "hidden": false },
+              { "type": "style", "section": "Styles", "hidden": false },
+              { "type": "test", "section": "Tests", "hidden": false }
+            ]
