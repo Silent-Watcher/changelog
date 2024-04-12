@@ -4,8 +4,7 @@
   "main": "index.js",
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-emoji",
-      "conventional": true
+      "path": "./node_modules/cz-conventional-changelog"
     }
   },
   "devDependencies": {
